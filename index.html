@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+        
+    </head> 
+    <body>
+        <audio id="bg-music" autoplay loop>
+            <source src="yellow.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button class="music-btn" onclick="toggleMusic()">🎵 Play/Pause Music</button>
+        <div class="container">
+            <div >
+                <h1  class = "header_text">Will you be my Valentine?</h1>
+            </div>
+            <div class="gif_container">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+            </div>
+            <div class = "buttons">
+                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
+                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+                <script>
+                    function nextPage() {
+                        window.location.href = "yes.html";
+                    }
+                    
+                    function moveButton() {
+                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+                        document.getElementById('noButton').style.left = `${x}px`;
+                        document.getElementById('noButton').style.top = `${y}px`;
+                    }
+                    let music = document.getElementById("bg-music");
+                    let isPlaying = false;
+
+                    function toggleMusic() {
+                        if (isPlaying) {
+                            music.pause();
+                        } else {
+                            music.play();
+                        }
+                        isPlaying = !isPlaying;
+                    }
+
+                    // Try to play music after user interaction
+                    document.addEventListener("DOMContentLoaded", function() {
+                        music.play().catch(() => {
+                            console.log("Autoplay blocked. User must click play.");
+                        });
+                    });
+                </script> 
+            </div>
+        </div>
+       
+    </body> 
+</html>
